@@ -1,0 +1,60 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func main() {
+	fmt.Println("hello from go")
+	fmt.Println(time.Now())
+	fmt.Println(add(5, 6))
+	fmt.Println(age(41))
+	fmt.Println(weight(149))
+	fmt.Printf("%-15v $%4v\n", "SpaceX", 94)
+	fmt.Printf("%-15v $%4v\n", "Virgin Galactic", 100)
+	var speed = 100800
+	var distance = 96300000
+	const hoursPerDay = 24
+	fmt.Printf("this will take %v days\n", (distance/speed)/hoursPerDay)
+	var num = rand.Intn(10) + 1
+	fmt.Println(num)
+	var hours = 28 * hoursPerDay
+	distance = 56000000
+	fmt.Println(distance/hours, "km/h")
+	r := 'a'
+	fmt.Printf("%v, %T\n", r, r)
+	// this can't be done with variables
+	const a = 5
+	var b int16 = 6
+	fmt.Printf("%v, %T\n", a+b, a+b)
+	/*
+	  1 equals 2 power 0 so when i shift it to the right it becomes 2 power 1 which is 2
+	  2 equals 2 power 1 so when i shift it to the right it becomes 2 power 2 which is 4
+	*/
+	const (
+		catSpecialist = 1 << iota
+		dogSpecialist
+		fishSpecialist
+	)
+
+	fmt.Println(catSpecialist, dogSpecialist, fishSpecialist)
+  var x int = 5
+  var y int = 10
+  x = x ^ y // 5 ^ 10 = 15 // 00000101 ^ 00001010 = 00001111
+  y = y ^ x // 10 ^ 15 = 5 // 00001010 ^ 00001111 = 00000101
+  x = x ^ y // 15 ^ 5 = 10 // 00001111 ^ 00000101 = 00001010
+  fmt.Println(x, y)
+}
+
+func add(a int8, b int8) int8 {
+	return a + b
+}
+
+func age(age int) int {
+	return (age * 365) / 687
+}
+func weight(weight float32) float32 {
+	return (weight * (37.83 / 100))
+}
