@@ -32,7 +32,7 @@ func main() {
 		if isValidTicketNumber && isValidName && isValidEmail {
 			remainingTickets, booked = helper.BookTickets(remainingTickets, bookedTickets, conferenceName, firstName, lastName, email, booked)
 			wg.Add(1)
-			go helper.SendTicket(bookedTickets, firstName, lastName, email)
+			go helper.SendTicket(bookedTickets, firstName, lastName, email, &wg)
 		} else {
 			// fmt.Printf("only exist a total number of %v tickets\n", remainingTickets)
 			// fmt.Printf("Your input data is invalid, try again\n")
@@ -51,7 +51,7 @@ func main() {
 			fmt.Println("The conference tickets are sold out")
 			break
 		}
-		wg.Wait()
 	}
+	wg.Wait()
 	helper.PrintFirstNames(booked)
 }

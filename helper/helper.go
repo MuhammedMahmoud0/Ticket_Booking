@@ -14,7 +14,7 @@ type UserData struct {
 	numberOfTickets uint
 }
 
-var wg = sync.WaitGroup{}
+// var wg = sync.WaitGroup{}  //this can not be used because there is one in the main.go so they can't work together at the same time
 
 func GreatingUser(conferenceName string, remainingTickets uint, conferenceTickets uint) {
 	fmt.Printf("Welcome To %v Booking app\n", conferenceName)
@@ -86,7 +86,7 @@ func BookTickets(remainingTickets uint, bookedTickets uint, conferenceName, firs
 	return remainingTickets, booked
 }
 
-func SendTicket(bookedTickets uint, firstName string, lastName string, email string) {
+func SendTicket(bookedTickets uint, firstName string, lastName string, email string, wg *sync.WaitGroup) {
 	time.Sleep(10 * time.Second)
 	ticket := fmt.Sprintf("%v tickets for %v %v", bookedTickets, firstName, lastName)
 	fmt.Println("####################")
